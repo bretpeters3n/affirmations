@@ -50,7 +50,7 @@ function App() {
           </Routes>
         </main>
         <nav className="theme-switcher btm-gradient">
-          <div id="appName" className="theme-switcher"><Link to="/" className="theme-switcher">Affirmations</Link></div>
+          <div id="appName" className="theme-switcher" onClick={handleHamClick}>Affirmations</div>
           <button id="hamburger" className={isActive ? 'opened' : ''} onClick={handleHamClick} aria-label="Main Menu">
             <svg width="40" height="40" viewBox="0 0 100 100">
               {/* NEW */}

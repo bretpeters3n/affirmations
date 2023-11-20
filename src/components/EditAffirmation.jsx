@@ -1,6 +1,9 @@
-import {BrowserRouter, Navigate, Route, Routes, Link } from 'react-router-dom'
+import {BrowserRouter, Navigate, Route, Routes, Link, useLocation } from 'react-router-dom'
 
 const EditAffirmation = () => {
+
+    const location = useLocation();
+    console.log(location.state)
 
     // Affirmation class
     class Affirmation {

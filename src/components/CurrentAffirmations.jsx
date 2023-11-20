@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import {BrowserRouter, useNavigate, Route, Routes, Link } from 'react-router-dom'
 import { AiFillEdit } from "react-icons/ai";
 import defaultAffirmationsArray from './DefaultAffirmations';
 
@@ -13,27 +13,36 @@ const CurrentAffirmations = () => {
     // const openDialog = () => setIsDialogVisible(true);
     // const closeDialog = () => setIsDialogVisible(false);
 
+    const navigate = useNavigate();
+
     const [isActive, setIsActive] = useState(false)
 
     const handleAddAffirmationClick = event => {
         // 👇️ toggle isActive state on click
         setIsActive(current => !current);
     }
-    const handleDeleteAffirmationClick = event => {
-        let editEl = event.target.parentElement.parentElement.parentElement;
-        let editId = editEl.getAttribute("id");
-        console.log('editId: ' + editId);
-        console.log('editEl: ' + editEl);
-        editEl.remove();
+    // const handleDeleteAffirmationClick = event => {
+    //     let editEl = event.target.parentElement.parentElement.parentElement;
+    //     let editId = editEl.getAttribute("id");
+    //     console.log('editId: ' + editId);
+    //     console.log('editEl: ' + editEl);
+    //     editEl.remove();
         
-        affirmationsArray = affirmationsArray.slice(0, editId).concat(affirmationsArray.slice(editId+1));
-        localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));        
-    }
+    //     affirmationsArray = affirmationsArray.slice(0, editId).concat(affirmationsArray.slice(editId+1));
+    //     localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));        
+    // }
     const handleEditAffirmationClick = event => {
-        let editEl = event.target.parentElement.parentElement.parentElement;
+        let editEl = event.target.parentElement.parentElement.parentElement.parentElement;
         let editId = editEl.getAttribute("id");
         console.log('editId: ' + editId);
         console.log('editEl: ' + editEl);
+        console.log(editEl);
+        navigate("/edit", { state: { affirmation_id: editId } }); // Pass optional second argument
+    }
+    const handleLoadDefaultAffirmationClick = () => {
+        console.log('clicked load')
+        let affirmationsArray = defaultAffirmationsArray;
+        localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
     }
 
     // load default affirmations
@@ -53,7 +62,7 @@ const CurrentAffirmations = () => {
                 <h1 className="theme-switcher text-3xl font-bold text-purple-600 pb-2">
                     Current Affirmations
                 </h1>
-                <Link to="/add" onClick={handleAddAffirmationClick}><button className="theme-switcher">Add an Affirmation</button></Link>
+                <Link to="/add"><button className="theme-switcher" onClick={handleAddAffirmationClick}>Add new affirmation</button></Link>
                 <div className="pt-4 pb-1">
                     <p>List of affirmations:</p>
                 </div>
@@ -65,16 +74,22 @@ const CurrentAffirmations = () => {
                                     <div className="currentCard">
                                         <div className="card grid">
                                             <p className="theme-switcher card-body">{affirmation}</p>
-                                            <button onClick={handleEditAffirmationClick} className="theme-switcher edit"><Link to="/edit"><AiFillEdit size={20} className="reactIcons"/></Link></button>
+                                            <button onClick={handleEditAffirmationClick} className="theme-switcher edit">
+                                                <AiFillEdit size={20} className="reactIcons"/>
+                                            </button>
                                         </div>
                                     </div>
                                 </li>
                         );
                     })}
                 </ul>
-                <div className="pb-4 pt-1">
+                <div className="pb-2 pt-1">
                     <p>End of list</p>
-                </div>    
+                </div>
+                <div className="pb-2">
+                    {/* <button className="theme-switcher" onClick={handleLoadDefaultAffirmationClick}>load default affirmations</button>     */}
+                </div>
+                
                 {/* <ModalDialog isDialogVisible={isDialogVisible} closeDialog={closeDialog}>
                     <p>Confirm deletion</p>
                     <p>Are you sure you want to delete this affirmation?</p>

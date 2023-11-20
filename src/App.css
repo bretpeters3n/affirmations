@@ -219,6 +219,9 @@ nav #appName {
   letter-spacing: 2px;
   color: var(--primaryColor);
 }
+#appName:hover {
+  cursor: pointer;
+}
 nav #appName.appNameDark {
   color: var(--main-bg-color-light);
 }
