@@ -326,7 +326,7 @@ button#hamburger {
   color: var(--primaryColor);
 }
 .card .edit:hover {
-  background-color: var(--primaryColor);
+  background-color: rgb(50, 50, 50);
 }
 
 /* Page layouts? */

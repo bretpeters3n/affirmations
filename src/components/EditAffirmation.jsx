@@ -1,8 +1,10 @@
-import {BrowserRouter, Navigate, Route, Routes, Link, useLocation } from 'react-router-dom'
+import {BrowserRouter, useNavigate, Route, Routes, Link, useLocation } from 'react-router-dom'
 import defaultAffirmationsArray from './DefaultAffirmations';
 
 
 const EditAffirmation = () => {
+
+    const navigate = useNavigate();
 
     // grab ID from previous page. ID of array element we want to edit
     const location = useLocation();
@@ -35,13 +37,14 @@ const EditAffirmation = () => {
             //Find index of specific object using findIndex method.    
             //Update object's name property.
             affirmationsArray[affirmationIDToEdit] = affirmationText;        
-
             localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
+            navigate("/current");
         }
     }
     function handleCancelEditAffirmationClick(e) {
         e.preventDefault();
         console.log('cancel pressed');
+        navigate("/current");
     }
 
     return (

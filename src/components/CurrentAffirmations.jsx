@@ -43,6 +43,7 @@ const CurrentAffirmations = () => {
         console.log('clicked load')
         let affirmationsArray = defaultAffirmationsArray;
         localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
+        navigate("/current");
     }
 
     // load default affirmations
@@ -87,7 +88,7 @@ const CurrentAffirmations = () => {
                     <p>End of list</p>
                 </div>
                 <div className="pb-2">
-                    {/* <button className="theme-switcher" onClick={handleLoadDefaultAffirmationClick}>load default affirmations</button>     */}
+                    <button className="theme-switcher" onClick={handleLoadDefaultAffirmationClick}>load default affirmations</button>    
                 </div>
                 
                 {/* <ModalDialog isDialogVisible={isDialogVisible} closeDialog={closeDialog}>
