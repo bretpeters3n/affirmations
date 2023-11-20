@@ -35,7 +35,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter basename="/affirmations">
+      <BrowserRouter>
         <main className="">
           <Routes>
             {/* <Route path="/home" element={<HomeTest />} /> */}
