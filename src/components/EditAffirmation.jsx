@@ -1,35 +1,47 @@
 import {BrowserRouter, Navigate, Route, Routes, Link, useLocation } from 'react-router-dom'
+import defaultAffirmationsArray from './DefaultAffirmations';
+
 
 const EditAffirmation = () => {
 
+    // grab ID from previous page. ID of array element we want to edit
     const location = useLocation();
-    console.log(location.state)
+    console.log(location.state);
+    let affirmationIDToEdit = location.state.affirmation_id;
+    console.log(affirmationIDToEdit);
 
-    // Affirmation class
-    class Affirmation {
-        constructor(text) {
-          this.text = text;
-        //   this.perimeter = visible;
-        }
-      
-        printInfo() {
-          console.log(`Affirmation text: ${this.text}`);
-        //   console.log(`Visible: ${this.visible}`);
-        }
-      }
+    // grab affirmationArray
+    // load default affirmations
+    let affirmationsArray = defaultAffirmationsArray;
+    // check for 'affirmationsUnique' in localStorage
+    // if it does not exist, create it and fill with . If it does exist, transfer it to var
+    affirmationsArray = localStorage.getItem('affirmationsUnique') ? JSON.parse(localStorage.getItem('affirmationsUnique')) : affirmationsArray;
+    // save to localStorage
+    localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
 
-    function handleConfirmAffirmationClick(e) {
+    // grab affirmation User wishes to edit 
+    let affirmationTextToEdit = affirmationsArray[affirmationIDToEdit];
+    console.log(affirmationTextToEdit);
+    
+
+    function handleConfirmEditAffirmationClick(e) {
         e.preventDefault();
-        console.log('edit pressed');
-        // const affirmationText = document.getElementById('affirmationText').value;
-        // if (!affirmationText) {
-        //   alert('Affirmation text is empty. Please add you affirmation.')
-        // } else {
-        //   let affirmation = new Affirmation(affirmationText);
-        //   console.log(affirmation);
-        //   affirmationsArray.push(affirmationText);
-        //   localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
-        // }
+        console.log('confirm pressed');
+        const affirmationText = document.getElementById('affirmationText').value;
+        if (!affirmationText) {
+          alert('Affirmation text is empty. Please add you affirmation.')
+        } else {
+            // switch out text in specified array item
+            //Find index of specific object using findIndex method.    
+            //Update object's name property.
+            affirmationsArray[affirmationIDToEdit] = affirmationText;        
+
+            localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
+        }
+    }
+    function handleCancelEditAffirmationClick(e) {
+        e.preventDefault();
+        console.log('cancel pressed');
     }
 
     return (
@@ -43,12 +55,12 @@ const EditAffirmation = () => {
                         <p>Edit your affirmation below</p>
                     </div>
                         <form className="align-items-center pb-3">
-                            <textarea className="" id="affirmationText" placeholder="Type/paste your affirmation here"></textarea>
+                            <textarea className="" id="affirmationText" defaultValue={affirmationTextToEdit}></textarea>
 
                         </form>
                         <div className="flex ">
-                            <Link to="/current"><button className="addAffirmation__button">Cancel</button></Link>
-                            <button className="addAffirmation__button" onClick={handleConfirmAffirmationClick}>Confirm</button>
+                            <button className="addAffirmation__button" onClick={handleCancelEditAffirmationClick}>Cancel</button>
+                            <button className="addAffirmation__button" onClick={handleConfirmEditAffirmationClick}>Confirm</button>
                         </div>
                 </section>
         </>
