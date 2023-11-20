@@ -1,0 +1,27 @@
+Affirmations
+____
+
+- get pushed to github
+- create kanban board for future tasks
+- tasks so far:
+	 - move Splide into component
+	 - add navigation
+	 - perfect transition animation
+	 - convert toggleModes() into ternairy statement
+	 - introduce timers for individual slides
+	 - fix background span.
+		   - make current background cover everything
+		   * - target real BG and apply classes there
+DONE - try targeting color of diff SVG. Is SVG culprit?
+DONE - add dark/light mode toggle
+DONE - hook up toggle
+ - think about UX of get, post, deleting, edit
+
+MVP features described:
+User is able to...
+DONE - see a looping animation of quotes
+DONE - ability to get, post
+1/2 - ability to toggle dark/light mode
+- ability to deleting, edit
+- use Constructor function to create new Objects you are saving
+- whipe Vite CSS if that is recommended. Add bootstrap.

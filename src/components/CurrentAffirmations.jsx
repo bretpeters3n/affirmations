@@ -1,8 +1,5 @@
 import { useState } from 'react'
-// import $ from 'jquery'
-// import { Splide, SplideSlide } from '@splidejs/react-splide';
-import {BrowserRouter, Navigate, Route, Routes, Link } from 'react-router-dom'
-// import ModalDialog from "react-basic-modal-dialog";
+import { Link } from 'react-router-dom'
 import { AiFillEdit } from "react-icons/ai";
 import defaultAffirmationsArray from './DefaultAffirmations';
 
