@@ -1,18 +1,24 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import defaultAffirmationsArray from './DefaultAffirmations';
-import affirmationsArray from './ReadData'
-const { AsyncLocalStorage } = require("async_hooks");
+// import affirmationsArrayGET from './ReadData'
 
 
 const DisplayAffirmations = () => {
     
-    // load default affirmations
-    let affirmationsArray = defaultAffirmationsArray;
-    // check for 'affirmationsUnique' in localStorage
-    // if it does not exist, create it and fill with . If it does exist, transfer it to var
-    affirmationsArray = localStorage.getItem('affirmationsUnique') ? JSON.parse(localStorage.getItem('affirmationsUnique')) : affirmationsArray;
-    // save to localStorage
-    localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
+    // read data
+    let affirmationsArray;
+    const readData = async () => {
+        affirmationsArray = defaultAffirmationsArray;
+        try {
+            affirmationsArray = localStorage.getItem('affirmationsUnique') ? await JSON.parse(localStorage.getItem('affirmationsUnique')) : affirmationsArray;
+        } catch(e) {
+            console.log(e);
+        }
+        return affirmationsArray;
+    }
+    (async () => {
+        affirmationsArray = await readData();
+    })()
 
     return (
         <>
