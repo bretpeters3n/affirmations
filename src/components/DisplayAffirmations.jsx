@@ -1,5 +1,7 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import defaultAffirmationsArray from './DefaultAffirmations';
+import affirmationsArray from './ReadData'
+const { AsyncLocalStorage } = require("async_hooks");
 
 
 const DisplayAffirmations = () => {
@@ -11,14 +13,6 @@ const DisplayAffirmations = () => {
     affirmationsArray = localStorage.getItem('affirmationsUnique') ? JSON.parse(localStorage.getItem('affirmationsUnique')) : affirmationsArray;
     // save to localStorage
     localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
-
-    // console.log(affirmationsArray);
-
-    // localStorage.setItem('sojournAffirmations')
-
-    // if (affirmationsArray == []) {
-    //     console.log('affirmationsArray empty');
-    // }
 
     return (
         <>
