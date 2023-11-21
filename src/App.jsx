@@ -27,8 +27,20 @@ function App() {
 
     if(isDarkModeActive === true) {
       setIsDarkModeActive(false)
+      console.log('dark')
+      toggleFullScreen();
     } else if(isDarkModeActive === false) {
       setIsDarkModeActive(true)
+      console.log('light')
+      toggleFullScreen();
+    }
+  }
+
+  function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else if (document.exitFullscreen) {
+      document.exitFullscreen();
     }
   }
 
@@ -72,7 +84,7 @@ function App() {
               <Link to="/about" onClick={handleHamClick}>Why?</Link>
             </li>
             {/* <li>
-              <Link to="/home" onClick={handleHamClick}>Home(test)</Link>
+              <Link id="toggleFullscreen">Toggle fullscreen</Link>
             </li> */}
             <li>
               <img className="theme-switcher" onClick={() => toggleModes()} src={isDarkModeActive ? lightModeIcon : darkModeIcon} alt="dark/light mode icon" />

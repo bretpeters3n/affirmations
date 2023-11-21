@@ -12,7 +12,7 @@ const DisplayAffirmations = () => {
     // save to localStorage
     localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
 
-    console.log(affirmationsArray);
+    // console.log(affirmationsArray);
 
     // localStorage.setItem('sojournAffirmations')
 
