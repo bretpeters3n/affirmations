@@ -84,25 +84,29 @@ a:hover {
   cursor: pointer;
 }
 
-button {
+button.btn {
   border-radius: 40px;
-  border: 2px solid var(--primaryColor);
   padding: 0.6em 1.2rem;
   font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
-  background-color: var(--backgroundColor);
+  
   cursor: pointer;
   transition: border-color 0.25s;
+  
+  margin-inline-start: 8px;
+  margin-inline-end: 8px;
+  writing-mode: horizontal-tb;
+}
+.btn-secondary {
+  border: 2px solid grey;
+  background-color: var(--backgroundColor);
+  color: grey;
+}
+.btn-secondary:hover {
+  border: 2px solid var(--primaryColor);
+  background-color: var(--backgroundColor);
   color: var(--primaryColor);
-}
-button:hover {
-  border-color: #d1f409;
-  color: #d1f409;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 /* Splide */
@@ -150,10 +154,6 @@ li {
   font-family: 'Poppins';
   font-size: 2rem;
   font-weight: 200;
-}
-.addAffirmation__button {
-  margin-inline-start: 20px; 
-  writing-mode: horizontal-tb;
 }
 
 /* #root {

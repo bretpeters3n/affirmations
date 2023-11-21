@@ -69,7 +69,9 @@ const CurrentAffirmations = () => {
                 <h1 className="theme-switcher text-3xl font-bold text-purple-600 pb-2">
                     Current Affirmations
                 </h1>
-                <Link to="/add"><button className="theme-switcher" onClick={handleAddAffirmationClick}>Add new affirmation</button></Link>
+                <div className='flex'>
+                    <Link to="/add"><button className="theme-switcher btn btn-success" onClick={handleAddAffirmationClick}>Add new affirmation</button></Link>
+                </div>
                 <div className="pt-4 pb-1">
                     <p>List of affirmations:</p>
                 </div>
@@ -90,12 +92,12 @@ const CurrentAffirmations = () => {
                         );
                     })}
                 </ul>
-                <div className="pb-2 pt-1">
+                <div className="pb-1 pt-1">
                     <p>End of list</p>
                 </div>
                 <div className="pb-2">
-                    <button className="theme-switcher addAffirmation__button" onClick={handleDeleteAllAffirmationClick}>delete all affirmations</button>    
-                    <button className="theme-switcher addAffirmation__button" onClick={handleLoadDefaultAffirmationClick}>load default affirmations</button>    
+                    <button className="theme-switcher btn btn-link" onClick={handleDeleteAllAffirmationClick}>delete all affirmations</button>    
+                    <button className="theme-switcher btn btn-link" onClick={handleLoadDefaultAffirmationClick}>load default affirmations</button>    
                 </div>
                 
                 {/* <ModalDialog isDialogVisible={isDialogVisible} closeDialog={closeDialog}>
