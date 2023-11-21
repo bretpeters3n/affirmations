@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/affirmations/static/css/main.8da8c3f4.css",
+    "main.js": "/affirmations/static/js/main.0d709369.js",
+    "static/js/787.56a0eee1.chunk.js": "/affirmations/static/js/787.56a0eee1.chunk.js",
+    "static/media/dark-mode-icon_dark.svg": "/affirmations/static/media/dark-mode-icon_dark.d44d7de28426cfda3ac84ad4e1236ad6.svg",
+    "static/media/dark-mode-icon_light.svg": "/affirmations/static/media/dark-mode-icon_light.6b9a28e9d9d52a1a9da9794300dc4cdf.svg",
+    "index.html": "/affirmations/index.html",
+    "main.8da8c3f4.css.map": "/affirmations/static/css/main.8da8c3f4.css.map",
+    "main.0d709369.js.map": "/affirmations/static/js/main.0d709369.js.map",
+    "787.56a0eee1.chunk.js.map": "/affirmations/static/js/787.56a0eee1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8da8c3f4.css",
+    "static/js/main.0d709369.js"
+  ]
+}
