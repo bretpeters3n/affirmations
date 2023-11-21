@@ -45,6 +45,12 @@ const CurrentAffirmations = () => {
         localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
         navigate("/current");
     }
+    const handleDeleteAllAffirmationClick = () => {
+        console.log('clicked delete all')
+        let affirmationsArray = [ "Your first affirmation. Edit me!" ]
+        localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
+        navigate("/current");
+    }
 
     // load default affirmations
     let affirmationsArray = defaultAffirmationsArray;
@@ -88,7 +94,8 @@ const CurrentAffirmations = () => {
                     <p>End of list</p>
                 </div>
                 <div className="pb-2">
-                    <button className="theme-switcher" onClick={handleLoadDefaultAffirmationClick}>load default affirmations</button>    
+                    <button className="theme-switcher addAffirmation__button" onClick={handleDeleteAllAffirmationClick}>delete all affirmations</button>    
+                    <button className="theme-switcher addAffirmation__button" onClick={handleLoadDefaultAffirmationClick}>load default affirmations</button>    
                 </div>
                 
                 {/* <ModalDialog isDialogVisible={isDialogVisible} closeDialog={closeDialog}>
