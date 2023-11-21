@@ -34,7 +34,7 @@ const AddAffirmation = () => {
         } else {
           let affirmation = new Affirmation(affirmationText);
           console.log(affirmation);
-          affirmationsArray.push(affirmationText);
+          affirmationsArray.unshift(affirmationText);
           localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
         }
     }
