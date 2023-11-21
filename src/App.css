@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Poppins:wght@200;400;800&display=swap');
 
 * {
   transition-property: color, background-color, border-color;
@@ -21,6 +21,7 @@
   --menuLineStyle: 1px solid transparent;
 
   --main-font: 'Poppins', system-ui, Helvetica, Arial, sans-serif;
+  --attention-font: 'Playfair+Display', Times New Roman, Georgia, serif;
 
   font-family: var(--main-font);
   line-height: 1.5;
@@ -344,4 +345,21 @@ button#hamburger {
   gap: .5rem;
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+/* MISC organize better */
+.about {
+  width: 100%;
+}
+.about p {
+  margin: auto;
+  min-width: 300px;
+  max-width: 500px;
+}
+.about p i {
+  font-family: var(--attention-font);
+  font-size: 1.3rem;
+  text-decoration: underline;
+  text-decoration-color: #d1f409;
+  line-height: 0;
 }

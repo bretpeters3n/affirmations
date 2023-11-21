@@ -7,6 +7,7 @@ import DisplayAffirmations from './components/DisplayAffirmations'
 import CurrentAffirmations from './components/CurrentAffirmations'
 import AddAffirmation from './components/AddAffirmation';
 import EditAffirmation from './components/EditAffirmation';
+import AboutAffirmations from './components/AboutAffirmations';
 import './App.css';
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
             <Route path="/current" element={<CurrentAffirmations />} />
             <Route path="/add" element={<AddAffirmation />} />
             <Route path="/edit" element={<EditAffirmation />} />
+            <Route path="/about" element={<AboutAffirmations />} />
             <Route
                 path="*"
                 element={<Navigate to="/" replace />}
@@ -66,16 +68,14 @@ function App() {
             <li>
               <Link to="/current" onClick={handleHamClick} className="theme-switcher">Edit/Add</Link>
             </li>
-            {/* <li>
+            <li>
               <Link to="/about" onClick={handleHamClick}>Why?</Link>
-            </li> */}
+            </li>
             {/* <li>
               <Link to="/home" onClick={handleHamClick}>Home(test)</Link>
             </li> */}
             <li>
-              <a>
-                <img className="theme-switcher" onClick={() => toggleModes()} src={isDarkModeActive ? lightModeIcon : darkModeIcon} alt="dark/light mode icon" />
-              </a>
+              <img className="theme-switcher" onClick={() => toggleModes()} src={isDarkModeActive ? lightModeIcon : darkModeIcon} alt="dark/light mode icon" />
             </li>
             <li className="lastMenuItemExtend"></li>
           </ul>
