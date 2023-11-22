@@ -19,7 +19,7 @@ const DisplayAffirmations = () => {
 
     return (
         <>
-            <section className="w-80 position-absolute top-50 start-50 translate-middle">
+            <section className="home-slideshow w-80 position-absolute top-50 start-50 translate-middle">
                 <Splide options={ {
                     pagination : false,
                     arrows : false,
