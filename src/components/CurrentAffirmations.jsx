@@ -2,6 +2,8 @@ import { useState } from 'react'
 import {BrowserRouter, useNavigate, Route, Routes, Link } from 'react-router-dom'
 import { AiFillEdit } from "react-icons/ai";
 import useConfirm from './UseConfirm';
+import { Button } from '@mui/material';
+
 // import { HiPlus } from "react-icons/hi";
 import defaultAffirmationsArray from './DefaultAffirmations';
 
@@ -16,10 +18,10 @@ const CurrentAffirmations = () => {
         setIsActive(current => !current);
     }
     const [Dialog, confirmDelete] = useConfirm(
-        'Are you sure?',
-        'Are you sure you want to delete user "Isaac Kwok"?',
-    )
-    const handleDeleteAll = async () => {
+        `Confirm deletion?`,
+        `Are you sure you want to delete ALL affirmations?`,
+    ) 
+    const handleDeleteAllAffirmationClick = async () => {
         const ans = await confirmDelete()
         if (ans) {
             let affirmationsArray = [ "Your first affirmation. Edit me!" ]
@@ -29,7 +31,22 @@ const CurrentAffirmations = () => {
         else {
             return;
         }
-    } 
+    }
+    const [Dialog2, confirmDelete2] = useConfirm(
+        `Confirm load default?`,
+        `Are you sure you want to load default affirmations? This will overwright all current affirmations`,
+    ) 
+    const handleLoadDefaultAffirmationClick = async () => {
+        const ans = await confirmDelete2()
+        if (ans) {
+            let affirmationsArray = defaultAffirmationsArray;
+            localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
+            navigate("/current");
+        }
+        else {
+            return;
+        }
+    }
     const handleEditAffirmationClick = event => {
         // let editEl = event.target.parentElement.parentElement.parentElement.parentElement;
         let editEl = event.target.closest("li");
@@ -39,18 +56,6 @@ const CurrentAffirmations = () => {
         console.log(editEl);
         navigate("/edit", { state: { affirmation_id: editId } }); // Pass optional second argument
     }
-    const handleLoadDefaultAffirmationClick = () => {
-        console.log('clicked load')
-        let affirmationsArray = defaultAffirmationsArray;
-        localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
-        navigate("/current");
-    }
-    // const handleDeleteAllAffirmationClick = () => {
-    //     console.log('clicked delete all')
-    //     let affirmationsArray = [ "Your first affirmation. Edit me!" ]
-    //     localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
-    //     navigate("/current");
-    // }
 
     // define data
     let affirmationsArray = defaultAffirmationsArray;
@@ -102,9 +107,10 @@ const CurrentAffirmations = () => {
                     <p>End of list</p>
                 </div>
                 <div className="pb-2">
-                    <button className="theme-switcher btn btn-link" onClick={handleDeleteAll}>delete all affirmations</button>
+                    <Button onClick={handleDeleteAllAffirmationClick}>delete all affirmations</Button>
                     <Dialog />    
-                    <button className="theme-switcher btn btn-link" onClick={handleLoadDefaultAffirmationClick}>load default affirmations</button>    
+                    <Button onClick={handleLoadDefaultAffirmationClick}>load default affirmations</Button>    
+                    <Dialog2 />  
                 </div>
                 
                 {/* <ModalDialog isDialogVisible={isDialogVisible} closeDialog={closeDialog}>

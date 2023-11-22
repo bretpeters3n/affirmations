@@ -1,4 +1,6 @@
 import {BrowserRouter, useNavigate, Route, Routes, Link, useLocation } from 'react-router-dom'
+import useConfirm from './UseConfirm';
+import { Button } from '@mui/material';
 import defaultAffirmationsArray from './DefaultAffirmations';
 
 
@@ -28,27 +30,57 @@ const EditAffirmation = () => {
     let affirmationTextToEdit = affirmationsArray[affirmationIDToEdit];
     console.log(affirmationTextToEdit);
     
-
-    function handleConfirmEditAffirmationClick(e) {
-        e.preventDefault();
-        console.log('confirm pressed');
-        const affirmationText = document.getElementById('affirmationText').value;
-        if (!affirmationText) {
-          alert('Affirmation text is empty. Please add you affirmation.')
-        } else {
-            // switch out text in specified array item
-            //Find index of specific object using findIndex method.    
-            //Update object's name property.
-            affirmationsArray[affirmationIDToEdit] = affirmationText;        
-            localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
-            navigate("/current");
+    const [Dialog, confirmDelete] = useConfirm(
+        `Confirm update?`,
+        `Are you sure you want to update this affirmations?`,
+    ) 
+    const handleConfirmEditAffirmationClick = async () => {
+        const ans = await confirmDelete()
+        if (ans) {
+            const affirmationText = document.getElementById('affirmationText').value;
+            if (!affirmationText) {
+                alert('Affirmation text is empty. Please add you affirmation.')
+            } else {
+                affirmationsArray[affirmationIDToEdit] = affirmationText;        
+                localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
+                navigate("/current");
+            }
+        }
+        else {
+            return;
         }
     }
-    function handleCancelEditAffirmationClick(e) {
-        e.preventDefault();
-        console.log('cancel pressed');
-        navigate("/current");
+    const [Dialog2, confirmDelete2] = useConfirm(
+        `Cancel edit?`,
+        `Are you sure you want to cancel this edit to your affirmation?`,
+    ) 
+    const handleCancelEditAffirmationClick = async () => {
+        const ans = await confirmDelete2()
+        if (ans) {
+            navigate("/current");
+        }
+        else {
+            return;
+        }
     }
+
+    // function handleConfirmEditAffirmationClick(e) {
+    //     e.preventDefault();
+    //     console.log('confirm pressed');
+    //     const affirmationText = document.getElementById('affirmationText').value;
+    //     if (!affirmationText) {
+    //       alert('Affirmation text is empty. Please add you affirmation.')
+    //     } else {
+    //         affirmationsArray[affirmationIDToEdit] = affirmationText;        
+    //         localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
+    //         navigate("/current");
+    //     }
+    // }
+    // function handleCancelEditAffirmationClick(e) {
+    //     e.preventDefault();
+    //     console.log('cancel pressed');
+    //     navigate("/current");
+    // }
 
     return (
         <>
@@ -64,9 +96,11 @@ const EditAffirmation = () => {
                             <textarea className="" id="affirmationText" defaultValue={affirmationTextToEdit}></textarea>
 
                         </form>
-                        <div className="flex ">
-                            <button className="addAffirmation__button" onClick={handleCancelEditAffirmationClick}>Cancel</button>
-                            <button className="addAffirmation__button" onClick={handleConfirmEditAffirmationClick}>Confirm</button>
+                        <div className="flex">
+                            <Button onClick={handleCancelEditAffirmationClick}>Cancel</Button>
+                            <Dialog2 />
+                            <button className="theme-switcher btn btn-outline-primary" onClick={handleConfirmEditAffirmationClick}>Update</button>
+                            <Dialog />
                         </div>
                 </section>
         </>
