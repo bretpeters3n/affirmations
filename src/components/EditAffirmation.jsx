@@ -12,14 +12,17 @@ const EditAffirmation = () => {
     let affirmationIDToEdit = location.state.affirmation_id;
     console.log(affirmationIDToEdit);
 
-    // grab affirmationArray
-    // load default affirmations
+    // define data
     let affirmationsArray = defaultAffirmationsArray;
-    // check for 'affirmationsUnique' in localStorage
-    // if it does not exist, create it and fill with . If it does exist, transfer it to var
-    affirmationsArray = localStorage.getItem('affirmationsUnique') ? JSON.parse(localStorage.getItem('affirmationsUnique')) : affirmationsArray;
-    // save to localStorage
-    localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
+    // get data
+    async function readData() {
+        affirmationsArray = localStorage.getItem('affirmationsUnique') ? JSON.parse(localStorage.getItem('affirmationsUnique')) : affirmationsArray;
+    }
+    // set data
+    readData().then(() => {
+        // affirmationsArray = await readData();
+        localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
+    })
 
     // grab affirmation User wishes to edit 
     let affirmationTextToEdit = affirmationsArray[affirmationIDToEdit];

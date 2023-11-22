@@ -2,9 +2,6 @@ import defaultAffirmationsArray from './DefaultAffirmations';
 
 const AddAffirmation = () => {
     
-    // load default affirmations
-    let affirmationsArray = defaultAffirmationsArray;
-
     // Affirmation class
     class Affirmation {
         constructor(text) {
@@ -18,13 +15,17 @@ const AddAffirmation = () => {
         }
       }
 
-    // check for sojournAffirmations in localStorage
-    // if it does not exist, create it and fill with . If it does exist, transfer it to var
-    affirmationsArray = localStorage.getItem('affirmationsUnique') ? JSON.parse(localStorage.getItem('affirmationsUnique')) : affirmationsArray;
-
-    localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
-
-    console.log(affirmationsArray);
+    // define data
+    let affirmationsArray = defaultAffirmationsArray;
+    // get data
+    async function readData() {
+        affirmationsArray = localStorage.getItem('affirmationsUnique') ? JSON.parse(localStorage.getItem('affirmationsUnique')) : affirmationsArray;
+    }
+    // set data
+    readData().then(() => {
+        // affirmationsArray = await readData();
+        localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
+    })
 
     function handleAddAffirmationClick(e) {
         e.preventDefault();

@@ -32,7 +32,8 @@ const CurrentAffirmations = () => {
     //     localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));        
     // }
     const handleEditAffirmationClick = event => {
-        let editEl = event.target.parentElement.parentElement.parentElement.parentElement;
+        // let editEl = event.target.parentElement.parentElement.parentElement.parentElement;
+        let editEl = event.target.closest("li");
         let editId = editEl.getAttribute("id");
         console.log('editId: ' + editId);
         console.log('editEl: ' + editEl);
@@ -52,16 +53,17 @@ const CurrentAffirmations = () => {
         navigate("/current");
     }
 
-    // load default affirmations
+    // define data
     let affirmationsArray = defaultAffirmationsArray;
-
-    // check for affirmations in localStorage
-    // if it does not exist, create it and fill with . If it does exist, transfer it to var
-    affirmationsArray = localStorage.getItem('affirmationsUnique') ? JSON.parse(localStorage.getItem('affirmationsUnique')) : affirmationsArray;
-    // save in localStorage
-    localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
-    // for testing
-    console.log(affirmationsArray);
+    // get data
+    async function readData() {
+        affirmationsArray = localStorage.getItem('affirmationsUnique') ? JSON.parse(localStorage.getItem('affirmationsUnique')) : affirmationsArray;
+    }
+    // set data
+    readData().then(() => {
+        // affirmationsArray = await readData();
+        localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
+    })
 
     return (
         <>
