@@ -1,20 +1,12 @@
 import { useState } from 'react'
 import {BrowserRouter, useNavigate, Route, Routes, Link } from 'react-router-dom'
 import { AiFillEdit } from "react-icons/ai";
-import ButtonWithModal from './ButtonWithModal';
+import useConfirm from './UseConfirm';
 // import { HiPlus } from "react-icons/hi";
 import defaultAffirmationsArray from './DefaultAffirmations';
 
 
 const CurrentAffirmations = () => {
-    // The only two required props for the modal dialog are isDialogVisible
-    // (to indicate whether the dialog should be visible or not) and closeDialog
-    // (a function setting isDialogVisible to false). Let's create them below.
-
-    // const [isDialogVisible, setIsDialogVisible] = useState(false);
-    // const openDialog = () => setIsDialogVisible(true);
-    // const closeDialog = () => setIsDialogVisible(false);
-
     const navigate = useNavigate();
 
     const [isActive, setIsActive] = useState(false)
@@ -23,16 +15,21 @@ const CurrentAffirmations = () => {
         // 👇️ toggle isActive state on click
         setIsActive(current => !current);
     }
-    // const handleDeleteAffirmationClick = event => {
-    //     let editEl = event.target.parentElement.parentElement.parentElement;
-    //     let editId = editEl.getAttribute("id");
-    //     console.log('editId: ' + editId);
-    //     console.log('editEl: ' + editEl);
-    //     editEl.remove();
-        
-    //     affirmationsArray = affirmationsArray.slice(0, editId).concat(affirmationsArray.slice(editId+1));
-    //     localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));        
-    // }
+    const [Dialog, confirmDelete] = useConfirm(
+        'Are you sure?',
+        'Are you sure you want to delete user "Isaac Kwok"?',
+    )
+    const handleDeleteAll = async () => {
+        const ans = await confirmDelete()
+        if (ans) {
+            let affirmationsArray = [ "Your first affirmation. Edit me!" ]
+            localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
+            navigate("/current");
+        }
+        else {
+            return;
+        }
+    } 
     const handleEditAffirmationClick = event => {
         // let editEl = event.target.parentElement.parentElement.parentElement.parentElement;
         let editEl = event.target.closest("li");
@@ -48,12 +45,12 @@ const CurrentAffirmations = () => {
         localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
         navigate("/current");
     }
-    const handleDeleteAllAffirmationClick = () => {
-        console.log('clicked delete all')
-        let affirmationsArray = [ "Your first affirmation. Edit me!" ]
-        localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
-        navigate("/current");
-    }
+    // const handleDeleteAllAffirmationClick = () => {
+    //     console.log('clicked delete all')
+    //     let affirmationsArray = [ "Your first affirmation. Edit me!" ]
+    //     localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
+    //     navigate("/current");
+    // }
 
     // define data
     let affirmationsArray = defaultAffirmationsArray;
@@ -105,10 +102,10 @@ const CurrentAffirmations = () => {
                     <p>End of list</p>
                 </div>
                 <div className="pb-2">
-                    <button className="theme-switcher btn btn-link" onClick={handleDeleteAllAffirmationClick}>delete all affirmations</button>    
+                    <button className="theme-switcher btn btn-link" onClick={handleDeleteAll}>delete all affirmations</button>
+                    <Dialog />    
                     <button className="theme-switcher btn btn-link" onClick={handleLoadDefaultAffirmationClick}>load default affirmations</button>    
                 </div>
-                <ButtonWithModal/>
                 
                 {/* <ModalDialog isDialogVisible={isDialogVisible} closeDialog={closeDialog}>
                     <p>Confirm deletion</p>
