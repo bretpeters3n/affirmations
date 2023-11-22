@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import {BrowserRouter, useNavigate, Route, Routes, Link } from 'react-router-dom'
 import { AiFillEdit } from "react-icons/ai";
+// import { HiPlus } from "react-icons/hi";
 import defaultAffirmationsArray from './DefaultAffirmations';
 
 
@@ -72,7 +73,12 @@ const CurrentAffirmations = () => {
                     Current Affirmations
                 </h1>
                 <div className='flex'>
-                    <Link to="/add"><button className="theme-switcher btn btn-success" onClick={handleAddAffirmationClick}>Add new affirmation</button></Link>
+                    <Link to="/add">
+                        <button className="theme-switcher btn btn-outline-primary" onClick={handleAddAffirmationClick}>
+                            {/* <HiPlus size={20} className="reactIcons plus"/> */}
+                            Add new Affirmation
+                        </button>
+                    </Link>
                 </div>
                 <div className="pt-4 pb-1">
                     <p>List of affirmations:</p>
