@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import {BrowserRouter, useNavigate, Route, Routes, Link } from 'react-router-dom'
 import { AiFillEdit } from "react-icons/ai";
+import ButtonWithModal from './ButtonWithModal';
 // import { HiPlus } from "react-icons/hi";
 import defaultAffirmationsArray from './DefaultAffirmations';
 
@@ -107,6 +108,7 @@ const CurrentAffirmations = () => {
                     <button className="theme-switcher btn btn-link" onClick={handleDeleteAllAffirmationClick}>delete all affirmations</button>    
                     <button className="theme-switcher btn btn-link" onClick={handleLoadDefaultAffirmationClick}>load default affirmations</button>    
                 </div>
+                <ButtonWithModal/>
                 
                 {/* <ModalDialog isDialogVisible={isDialogVisible} closeDialog={closeDialog}>
                     <p>Confirm deletion</p>
