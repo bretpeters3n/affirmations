@@ -8,14 +8,12 @@ const DisplayAffirmations = () => {
     // define data
     let affirmationsArray = defaultAffirmationsArray;
     // get data
-    async function readData() {
+    function readData() {
         affirmationsArray = localStorage.getItem('affirmationsUnique') ? JSON.parse(localStorage.getItem('affirmationsUnique')) : affirmationsArray;
-    }
-    // set data
-    readData().then(() => {
-        // affirmationsArray = await readData();
         localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
-    })
+    }
+    // read and set data
+    readData();
 
     return (
         <>
