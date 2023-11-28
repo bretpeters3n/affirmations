@@ -22,7 +22,6 @@ const EditAffirmation = () => {
     }
     // set data
     readData().then(() => {
-        // affirmationsArray = await readData();
         localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
     })
 
@@ -30,12 +29,12 @@ const EditAffirmation = () => {
     let affirmationTextToEdit = affirmationsArray[affirmationIDToEdit];
     console.log(affirmationTextToEdit);
     
-    const [Dialog, confirmDelete] = useConfirm(
+    const [DialogEdit, confirmEdit] = useConfirm(
         `Confirm update?`,
         `Are you sure you want to update this affirmations?`,
     ) 
     const handleConfirmEditAffirmationClick = async () => {
-        const ans = await confirmDelete()
+        const ans = await confirmEdit()
         if (ans) {
             const affirmationText = document.getElementById('affirmationText').value;
             if (!affirmationText) {
@@ -50,12 +49,50 @@ const EditAffirmation = () => {
             return;
         }
     }
-    const [Dialog2, confirmDelete2] = useConfirm(
+
+    const [DialogDelete, confirmDelete] = useConfirm(
+        `Confirm deletion?`,
+        `Are you sure you want to delete this affirmations?`,
+    ) 
+    const handleConfirmDeleteAffirmationClick = async () => {
+        const ans = await confirmDelete()
+        if (ans) {
+            // grab index value of affirmation
+            // replace below with splice/concat solution
+            const n = affirmationIDToEdit;
+            affirmationsArray = affirmationsArray.slice(0, n).concat(affirmationsArray.slice(n+1))
+
+            // test array
+            console.log(affirmationsArray);
+
+            // save array
+            localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
+
+            // go back to current affirmations
+            navigate("/current");
+            
+            // remove that value from array and save array
+
+            // const affirmationText = document.getElementById('affirmationText').value;
+            // if (!affirmationText) {
+            //     alert('Affirmation text is empty. Please add you affirmation.')
+            // } else {
+            //     affirmationsArray[affirmationIDToEdit] = affirmationText;        
+            //     localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
+            //     navigate("/current");
+            // }
+        }
+        else {
+            return;
+        }
+    }
+
+    const [DialogCancel, confirmCancel] = useConfirm(
         `Cancel edit?`,
         `Are you sure you want to cancel this edit to your affirmation?`,
     ) 
     const handleCancelEditAffirmationClick = async () => {
-        const ans = await confirmDelete2()
+        const ans = await confirmCancel()
         if (ans) {
             navigate("/current");
         }
@@ -98,9 +135,11 @@ const EditAffirmation = () => {
                         </form>
                         <div className="flex">
                             <Button onClick={handleCancelEditAffirmationClick}>Cancel</Button>
-                            <Dialog2 />
-                            <button className="theme-switcher btn btn-outline-primary" onClick={handleConfirmEditAffirmationClick}>Update</button>
-                            <Dialog />
+                            <DialogCancel />
+                            <button className="theme-switcher btn btn-outline-primary" onClick={handleConfirmEditAffirmationClick}>Update Affirmation</button>
+                            <DialogEdit />
+                            <button className="theme-switcher btn btn-danger" onClick={handleConfirmDeleteAffirmationClick}>Delete Affirmation</button>
+                            <DialogDelete />
                         </div>
                 </section>
         </>
