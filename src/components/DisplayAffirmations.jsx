@@ -30,7 +30,7 @@ const DisplayAffirmations = () => {
                             index
                         ) => {
                             return (
-                                <SplideSlide key={uuid} data-splide-interval={duration}>
+                                <SplideSlide id={index} key={uuid} data-splide-interval={duration}>
                                     <p>{affirmation}</p>
                                 </SplideSlide>
                             );

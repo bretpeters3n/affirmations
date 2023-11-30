@@ -87,10 +87,13 @@ const CurrentAffirmations = () => {
                     <p>List of affirmations:</p>
                 </div>
                 <ul className='currentAffirmations'>
-                    {affirmationsArray.map((affirmation, index, affirmationsArray) => {
-                        return (
-                                <li id={index} className="splide__slide__EDIT" key={index}>
-                                {/* // <li id={index} onClick={openDialog} className="splide__slide__EDIT" key={index}> */}
+                    {affirmationsArray.map(
+                        (
+                            { group, affirmation, duration, order, uuid},
+                            index
+                        ) => {
+                            return (
+                                <li id={index} className="splide__slide__EDIT" key={uuid}>
                                     <div className="currentCard">
                                         <div className="card grid">
                                             <p className="theme-switcher card-body">{affirmation}</p>
