@@ -1,7 +1,7 @@
 import {BrowserRouter, useNavigate, Route, Routes, Link, useLocation } from 'react-router-dom'
 import useConfirm from './UseConfirm';
 import { Button } from '@mui/material';
-import defaultAffirmationsArray from './DefaultAffirmations';
+import DefineGetSetAffirmationsArray from './DefineGetSetAffirmationsArray';
 
 
 const EditAffirmation = () => {
@@ -14,19 +14,11 @@ const EditAffirmation = () => {
     let affirmationIDToEdit = location.state.affirmation_id;
     console.log(affirmationIDToEdit);
 
-    // define data
-    let affirmationsArray = defaultAffirmationsArray;
-    // get data
-    async function readData() {
-        affirmationsArray = localStorage.getItem('affirmationsUnique') ? JSON.parse(localStorage.getItem('affirmationsUnique')) : affirmationsArray;
-    }
-    // set data
-    readData().then(() => {
-        localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
-    })
+    // define, get, and set data
+    let affirmationsArray = DefineGetSetAffirmationsArray();
 
     // grab affirmation User wishes to edit 
-    let affirmationTextToEdit = affirmationsArray[affirmationIDToEdit];
+    let affirmationTextToEdit = affirmationsArray[affirmationIDToEdit].affirmation;
     console.log(affirmationTextToEdit);
     
     const [DialogEdit, confirmEdit] = useConfirm(
@@ -40,7 +32,20 @@ const EditAffirmation = () => {
             if (!affirmationText) {
                 alert('Affirmation text is empty. Please add you affirmation.')
             } else {
-                affirmationsArray[affirmationIDToEdit] = affirmationText;        
+                affirmationsArray[affirmationIDToEdit].affirmation = affirmationText;
+                // reset duration property
+                let affirmation = affirmationText;
+                let limit = 60;
+                let affLength = affirmation.length;
+                let short = '4000';
+                let long = '8000';
+                if (affLength < limit) {
+                    console.log('smaller than 10. It is: ' + affLength)
+                    affirmationsArray[affirmationIDToEdit].duration = short;
+                } else {
+                    console.log('larger than 10. It is: ' + affLength)
+                    affirmationsArray[affirmationIDToEdit].duration = long;
+                }        
                 localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
                 navigate("/current");
             }
