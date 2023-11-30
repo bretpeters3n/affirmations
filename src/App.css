@@ -129,7 +129,7 @@ li.splide__slide {
   flex-direction: column;
 }
 .splide__slide p {
-  font-family: 'Poppins';
+  font-family: var(--main-font);
   font-size: 2rem;
   font-weight: 200;
 }

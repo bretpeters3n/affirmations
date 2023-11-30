@@ -3,8 +3,7 @@ import {BrowserRouter, useNavigate, Route, Routes, Link } from 'react-router-dom
 import { AiFillEdit } from "react-icons/ai";
 import useConfirm from './UseConfirm';
 import { Button } from '@mui/material';
-
-// import { HiPlus } from "react-icons/hi";
+import DefineGetSetAffirmationsArray from './DefineGetSetAffirmationsArray';
 import defaultAffirmationsArray from './DefaultAffirmations';
 
 
@@ -57,17 +56,8 @@ const CurrentAffirmations = () => {
         navigate("/edit", { state: { affirmation_id: editId } }); // Pass optional second argument
     }
 
-    // define data
-    let affirmationsArray = defaultAffirmationsArray;
-    // get data
-    async function readData() {
-        affirmationsArray = localStorage.getItem('affirmationsUnique') ? JSON.parse(localStorage.getItem('affirmationsUnique')) : affirmationsArray;
-    }
-    // set data
-    readData().then(() => {
-        // affirmationsArray = await readData();
-        localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
-    })
+    // define, get, and set data
+    let affirmationsArray = DefineGetSetAffirmationsArray();
 
     return (
         <>
