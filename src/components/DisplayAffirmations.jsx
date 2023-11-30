@@ -1,25 +1,19 @@
+import { useState } from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import defaultAffirmationsArray from './DefaultAffirmations';
-// import affirmationsArrayGET from './ReadData'
+import DefineGetSetAffirmationsArray from './DefineGetSetAffirmationsArray';
 
 
 const DisplayAffirmations = () => {
     
-    // define data
-    let affirmationsArray = defaultAffirmationsArray;
-    // get data
-    async function readData() {
-        affirmationsArray = localStorage.getItem('affirmationsUnique') ? JSON.parse(localStorage.getItem('affirmationsUnique')) : affirmationsArray;
-    }
-    // set data
-    readData().then(() => {
-        localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
-    })
+    // define, get, and set data
+    let affirmationsArray = DefineGetSetAffirmationsArray();
 
     return (
         <>
             <section className="home-slideshow w-80 position-absolute top-50 start-50 translate-middle">
-                <Splide options={ {
+                <Splide options=
+                { 
+                    {
                     pagination : false,
                     arrows : false,
                     type : 'fade',
@@ -28,12 +22,17 @@ const DisplayAffirmations = () => {
                     speed: 500,
                     width : '100vw',
                     interval: 4000,
-                    } } aria-label="My Affirmation Quotes">
-                {affirmationsArray.map((affirmation, i, affirmationsArray) => {
+                    } 
+                } aria-label="My Affirmation Quotes">
+                    {affirmationsArray.map(
+                        (
+                            { group, affirmation, duration, order, uuid},
+                            index
+                        ) => {
                             return (
-                                <SplideSlide key={i}>
-                                <p>{affirmationsArray[i]}</p>
-                            </SplideSlide>
+                                <SplideSlide key={uuid} data-splide-interval={duration}>
+                                    <p>{affirmation}</p>
+                                </SplideSlide>
                             );
                         })}
                 </Splide>
