@@ -19,9 +19,16 @@ const AddAffirmation = () => {
       //   this.perimeter = visible;
       }
     
-      printInfo() {
-        console.log(`Affirmation text: ${this.text}`);
-      //   console.log(`Visible: ${this.visible}`);
+      // Setter
+      set affirmation(value) {
+        if (value.length < 10) {
+          // alert("Name is too short.");
+          // return;
+          console.log('smaller than 10. It is: ' + value.length)
+        } else {
+        // this.duration = value;
+        console.log('larger than 10. It is: ' + value.length)
+        }
       }
     }
 
@@ -40,6 +47,7 @@ const AddAffirmation = () => {
         alert('Affirmation text is empty. Please add you affirmation.')
       } else {
         const newAffirmation = new Affirmation(affirmation);
+        // newAffirmation.calcLength();
         affirmationsArray.unshift(newAffirmation);
         localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
         navigate("/current");
