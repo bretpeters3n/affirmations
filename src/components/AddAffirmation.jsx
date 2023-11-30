@@ -13,24 +13,42 @@ const AddAffirmation = () => {
       constructor(affirmation) {
         this.group = 'Default Affirmations';
         this.affirmation = affirmation;
-        this.duration = '4000';
         this.order = '69';
-        this.uuid = 'install this and creat method'
-      //   this.perimeter = visible;
+        this.uuid = 'install this and creat method';
+
+        let limit = 60;
+        let affLength = affirmation.length;
+        let short = '4000';
+        let long = '8000';
+        if (affLength < limit) {
+              console.log('smaller than 10. It is: ' + affLength)
+              this.duration = short;
+            } else {
+              console.log('larger than 10. It is: ' + affLength)
+              this.duration = long;
+            }
       }
+
+      // // getter
+      // get duration() {
+      //   return this._duration;
+      // }
     
-      // Setter
-      set affirmation(value) {
-        if (value.length < 10) {
-          // alert("Name is too short.");
-          // return;
-          console.log('smaller than 10. It is: ' + value.length)
-        } else {
-        // this.duration = value;
-        console.log('larger than 10. It is: ' + value.length)
-        }
-      }
-    }
+      // // setter
+      // set duration(affirmation) {
+      //   let limit = 60;
+      //   let affLength = affirmation.length;
+      //   console.log(typeof affLength);
+      //   console.log(affLength);
+      //   if (affLength < limit) {
+      //     console.log('smaller than 10. It is: ' + affLength)
+      //     this._duration = '4000';
+      //   } else {
+      //     console.log('larger than 10. It is: ' + affLength)
+      //     this._duration = '6000';
+      //   }
+      // }
+  }
 
   // define, get, and set data
   let affirmationsArray = DefineGetSetAffirmationsArray();
