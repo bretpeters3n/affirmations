@@ -28,11 +28,11 @@ function App() {
     if(isDarkModeActive === true) {
       setIsDarkModeActive(false)
       console.log('dark')
-      toggleFullScreen();
+      // toggleFullScreen();
     } else if(isDarkModeActive === false) {
       setIsDarkModeActive(true)
       console.log('light')
-      toggleFullScreen();
+      // toggleFullScreen();
     }
   }
 

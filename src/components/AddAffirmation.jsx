@@ -21,12 +21,12 @@ const AddAffirmation = () => {
         let short = '4000';
         let long = '8000';
         if (affLength < limit) {
-              console.log('smaller than 10. It is: ' + affLength)
-              this.duration = short;
-            } else {
-              console.log('larger than 10. It is: ' + affLength)
-              this.duration = long;
-            }
+          console.log('smaller than 10. It is: ' + affLength)
+          this.duration = short;
+        } else {
+          console.log('larger than 10. It is: ' + affLength)
+          this.duration = long;
+        }
       }
 
       // // getter
