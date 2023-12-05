@@ -3,52 +3,11 @@ import useConfirm from './UseConfirm';
 import { Button } from '@mui/material';
 // import defaultAffirmationsArray from './DefaultAffirmations';
 import DefineGetSetAffirmationsArray from './DefineGetSetAffirmationsArray';
+import Affirmation from './Classes'; // Affirmation class
 
 const AddAffirmation = () => {
   
   const navigate = useNavigate();
-
-  // Affirmation class
-  class Affirmation {
-      constructor(affirmation) {
-        this.group = 'Default Affirmations';
-        this.affirmation = affirmation;
-        this.order = '69';
-        this.uuid = 'install this and creat method';
-
-        let limit = 60;
-        let affLength = affirmation.length;
-        let short = '4000';
-        let long = '8000';
-        if (affLength < limit) {
-          console.log('smaller than 10. It is: ' + affLength)
-          this.duration = short;
-        } else {
-          console.log('larger than 10. It is: ' + affLength)
-          this.duration = long;
-        }
-      }
-
-      // // getter
-      // get duration() {
-      //   return this._duration;
-      // }
-    
-      // // setter
-      // set duration(affirmation) {
-      //   let limit = 60;
-      //   let affLength = affirmation.length;
-      //   console.log(typeof affLength);
-      //   console.log(affLength);
-      //   if (affLength < limit) {
-      //     console.log('smaller than 10. It is: ' + affLength)
-      //     this._duration = '4000';
-      //   } else {
-      //     console.log('larger than 10. It is: ' + affLength)
-      //     this._duration = '6000';
-      //   }
-      // }
-  }
 
   // define, get, and set data
   let affirmationsArray = DefineGetSetAffirmationsArray();
