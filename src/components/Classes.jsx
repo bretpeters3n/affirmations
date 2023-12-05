@@ -18,3 +18,6 @@ export default class Affirmation {
         }
     }
 }
+
+// if you add another class here, figure out how to export them all here:
+// https://medium.com/@etherealm/named-export-vs-default-export-in-es6-affb483a0910

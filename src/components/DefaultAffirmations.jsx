@@ -22,10 +22,17 @@ const defaultAffirmationsArray = [
     },
     {
         group: 'Default Affirmations',
-        affirmation: 'Whenever we’re afraid, it’s because we don’t know enough. If we understood enough, we would never be afraid.',
+        affirmation: 'Whenever we’re afraid, it’s because we don’t know enough. If we understood enough, we would never be afraid',
         duration: '8000',
         order: '4',
         uuid: 'b87ef72c-adb0-4f6b-8790-2f4b6f7b1244',
+    },
+    {
+        group: 'Default Affirmations',
+        affirmation: 'Be patient, dreadful moments can pass in time',
+        duration: '4000',
+        order: '5',
+        uuid: 'b87ef72c-adb0-4f6b-4067-2f4b6f7b1244',
     },
     // "You got this",
     // "You'll figure it out",
