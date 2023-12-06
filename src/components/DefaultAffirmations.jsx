@@ -1,39 +1,58 @@
 const defaultAffirmationsArray = [
     {
-        group: 'Default Affirmations',
-        affirmation: 'You got this',
-        duration: '4000',
-        order: '1',
-        uuid: 'bfd006b8-0f59-4e3a-8e7b-194531a48891',
-    },
-    {
-        group: 'Default Affirmations',
-        affirmation: 'You’ll figure it out',
-        duration: '4000',
-        order: '2',
-        uuid: '03979718-4466-4e72-8438-cf7d05ee5e54',
-    },
-    {
-        group: 'Default Affirmations',
-        affirmation: 'You’re a smart cookie',
-        duration: '4000',
-        order: '3',
-        uuid: 'ecf29ae1-7141-4991-a556-41ee66a0c52c',
-    },
-    {
-        group: 'Default Affirmations',
-        affirmation: 'Whenever we’re afraid, it’s because we don’t know enough. If we understood enough, we would never be afraid',
-        duration: '8000',
-        order: '4',
-        uuid: 'b87ef72c-adb0-4f6b-8790-2f4b6f7b1244',
-    },
-    {
-        group: 'Default Affirmations',
-        affirmation: 'Be patient, dreadful moments can pass in time',
-        duration: '4000',
-        order: '5',
-        uuid: 'b87ef72c-adb0-4f6b-4067-2f4b6f7b1244',
-    },
+        currentGroup: 'Default Affirmations', 
+        groups: [{
+            group: 'Default Affirmations',
+            affirmations: [{
+                affirmation: 'You got this',
+                duration: '4000',
+                order: '1',
+                uuid: 'bfd006b8-0f59-4e3a-8e7b-194531a48891',
+            },
+            {
+                affirmation: 'You’ll figure it out',
+                duration: '4000',
+                order: '2',
+                uuid: '03979718-4466-4e72-8438-cf7d05ee5e54',
+            },
+            {
+                affirmation: 'You’re a smart cookie',
+                duration: '4000',
+                order: '3',
+                uuid: 'ecf29ae1-7141-4991-a556-41ee66a0c52c',
+            },
+            {
+                affirmation: 'I believe in you',
+                duration: '4000',
+                order: '4',
+                uuid: 'b87ef72c-adb0-4f6b-8790-2f4b6f7b1244',
+            },
+            {
+                affirmation: 'Sucking at something is the first step towards being good at something',
+                duration: '8000',
+                order: '5',
+                uuid: 'b87ef72c-adb0-4f6b-4067-2f4b6f7b1244',
+            }],
+        },
+        {
+            group: 'Share Affirmations',
+            affirmations: [{
+                affirmation: 'Struggling is part of learning',
+                duration: '4000',
+                order: '1',
+                uuid: 'bfd006b8-0f59-4e3a-8e7b-193021a48891',
+            },
+            {
+                affirmation: 'Everything has cracks - that’s how the light gets in',
+                duration: '4000',
+                order: '2',
+                uuid: 'bfd0so45-0f59-4e3a-8e7b-194531a48891',
+            }],
+        }]
+    }
+];
+    
+
     // "You got this",
     // "You'll figure it out",
     // "You're a smart cookie",
@@ -81,6 +100,6 @@ const defaultAffirmationsArray = [
     // "Starting is the most difficult step - but you can do it",
     // "Don't forget to enjoy the journey",
     // "It's not a mistake, it's a learning opportunity",
-];
+    // "Be patient, moments with dreadful feelings can pass in time",
 
 export default defaultAffirmationsArray;
