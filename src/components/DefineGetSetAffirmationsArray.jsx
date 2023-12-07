@@ -1,7 +1,7 @@
 import defaultAffirmationsArray from './DefaultAffirmations';
 
-export default function DefineGetSetAffirmationsArray() {
-    
+const DefineGetSetAffirmationsArray = (props) => {
+
     // define data
     let affirmationsArray = defaultAffirmationsArray;
     // get data
@@ -14,3 +14,5 @@ export default function DefineGetSetAffirmationsArray() {
     })
     return affirmationsArray;
 }
+
+export default DefineGetSetAffirmationsArray;

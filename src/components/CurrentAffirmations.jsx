@@ -5,6 +5,7 @@ import useConfirm from './UseConfirm';
 import { Button } from '@mui/material';
 import DefineGetSetAffirmationsArray from './DefineGetSetAffirmationsArray';
 import defaultAffirmationsArray from './DefaultAffirmations';
+import MyButton from './Button';
 
 
 const CurrentAffirmations = () => {
@@ -59,6 +60,22 @@ const CurrentAffirmations = () => {
     // define, get, and set data
     let affirmationsArray = DefineGetSetAffirmationsArray();
 
+    // object of affirmation groups
+    let affirmationGroupsObject = affirmationsArray[0].groups;
+
+    // define var for key of affirmation group we are attempting to display
+    let groupKey;
+    // assign the wanted key to the var
+    Object.entries(affirmationGroupsObject).forEach(entry => {
+        const [key, value] = entry;
+        if (value.group === "Default Affirmations") {
+            groupKey = key;
+        } 
+    });
+
+    // assign var with array of affirmations we are attempting to display
+    let currentGroupAffirmations = affirmationGroupsObject[groupKey].affirmations;
+
     return (
         <>
             <section className="traditional__layout">
@@ -67,17 +84,17 @@ const CurrentAffirmations = () => {
                 </h1>
                 <div className='flex'>
                     <Link to="/add">
-                        <button className="theme-switcher btn btn-outline-primary" onClick={handleAddAffirmationClick}>
-                            {/* <HiPlus size={20} className="reactIcons plus"/> */}
-                            Add new Affirmation
-                        </button>
+                        <MyButton text='Add new Affirmation' onClick={handleAddAffirmationClick}/>
                     </Link>
                 </div>
                 <div className="pt-4 pb-1">
-                    <p>List of affirmations:</p>
+                    <p className="italic">Your affirmation groups:</p>
+                </div>
+                <div className="pt-4 pb-1">
+                    <p className="italic">List of current affirmations:</p>
                 </div>
                 <ul className='currentAffirmations'>
-                    {affirmationsArray.map(
+                    {currentGroupAffirmations.map(
                         (
                             { group, affirmation, duration, order, uuid},
                             index
@@ -97,7 +114,7 @@ const CurrentAffirmations = () => {
                     })}
                 </ul>
                 <div className="pb-1 pt-1">
-                    <p>End of list</p>
+                    <p className="italic">End of list</p>
                 </div>
                 <div className="pb-2">
                     <Button onClick={handleDeleteAllAffirmationClick}>delete all affirmations</Button>

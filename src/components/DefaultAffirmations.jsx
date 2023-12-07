@@ -48,7 +48,23 @@ const defaultAffirmationsArray = [
                 order: '2',
                 uuid: 'bfd0so45-0f59-4e3a-8e7b-194531a48891',
             }],
-        }]
+        },
+        {
+            group: 'Coding Affirmations',
+            affirmations: [{
+                affirmation: '10x engineers are a myth',
+                duration: '4000',
+                order: '1',
+                uuid: 'bfd006b8-0f59-20vy-8e7b-193021a48891',
+            },
+            {
+                affirmation: 'When you sit down to code you first draw from your experience. Keep practicing to build that experience up!',
+                duration: '8000',
+                order: '2',
+                uuid: 'bfd0so45-0f59-4e3a-6y2v-194531a48891',
+            }],
+        }
+    ]
     }
 ];
     
