@@ -74,8 +74,8 @@ const CurrentAffirmations = () => {
         } 
     });
     
-    // assign var with array of affirmations we are attempting to display
-    let currentGroupAffirmations = affirmationGroupsObject[groupKey].affirmations;
+    // // assign var with array of affirmations we are attempting to display
+    // let currentGroupAffirmations = affirmationGroupsObject[groupKey].affirmations;
 
     // load different affirmation groups
     const [affirmationGroup, setAffirmationGroup] = useState("Default Affirmations");
@@ -83,7 +83,7 @@ const CurrentAffirmations = () => {
     function handleLoadAffirmationGroup(changeGroup) {
         setAffirmationGroup(() => 
             {
-                // cycle through affirmation object (from localstorage) and set groupKey to reflect new group that was just
+                // cycle through affirmation object (from localstorage) and set groupKey to reflect new group that was just selected
                 Object.entries(affirmationGroupsObject).forEach(entry => {
                     const [key, value] = entry;
                     if (value.group === changeGroup) {
@@ -93,8 +93,8 @@ const CurrentAffirmations = () => {
                 });
 
                 // assign var with array of affirmations we are attempting to display
-                currentGroupAffirmations = affirmationGroupsObject[groupKey].affirmations;
-                console.log(currentGroupAffirmations)
+                setCurrentGroupAffirmations(affirmationGroupsObject[groupKey].affirmations)
+                // console.log(currentGroupAffirmations)
 
             });
         // // pass in group name
@@ -104,6 +104,7 @@ const CurrentAffirmations = () => {
         
     }
 
+    const [currentGroupAffirmations, setCurrentGroupAffirmations] = useState(affirmationGroupsObject[groupKey].affirmations);
 
     return (
         <>
