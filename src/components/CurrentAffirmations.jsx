@@ -57,12 +57,13 @@ const CurrentAffirmations = () => {
         navigate("/edit", { state: { affirmation_id: editId } }); // Pass optional second argument
     }
 
+    
     // define, get, and set data
     let affirmationsArray = DefineGetSetAffirmationsArray();
-
+    
     // object of affirmation groups
     let affirmationGroupsObject = affirmationsArray[0].groups;
-
+    
     // define var for key of affirmation group we are attempting to display
     let groupKey;
     // assign the wanted key to the var
@@ -72,9 +73,37 @@ const CurrentAffirmations = () => {
             groupKey = key;
         } 
     });
-
+    
     // assign var with array of affirmations we are attempting to display
     let currentGroupAffirmations = affirmationGroupsObject[groupKey].affirmations;
+
+    // load different affirmation groups
+    const [affirmationGroup, setAffirmationGroup] = useState("Default Affirmations");
+
+    function handleLoadAffirmationGroup(changeGroup) {
+        setAffirmationGroup(() => 
+            {
+                // cycle through affirmation object (from localstorage) and set groupKey to reflect new group that was just
+                Object.entries(affirmationGroupsObject).forEach(entry => {
+                    const [key, value] = entry;
+                    if (value.group === changeGroup) {
+                        groupKey = key;
+                        console.log(key)
+                    } 
+                });
+
+                // assign var with array of affirmations we are attempting to display
+                currentGroupAffirmations = affirmationGroupsObject[groupKey].affirmations;
+                console.log(currentGroupAffirmations)
+
+            });
+        // // pass in group name
+        // console.log({changeGroup});
+        // console.log(typeof {changeGroup});
+
+        
+    }
+
 
     return (
         <>
@@ -87,8 +116,11 @@ const CurrentAffirmations = () => {
                         <MyButton text='Add new Affirmation' onClick={handleAddAffirmationClick}/>
                     </Link>
                 </div>
-                <div className="pt-4 pb-1">
-                    <p className="italic">Your affirmation groups:</p>
+                <div className="d-flex flex-column align-items-center pt-4 pb-1">
+                    <p className="italic">Select affirmation group:</p>
+                    <Button onClick={() => handleLoadAffirmationGroup('Default Affirmations')}>Default Affirmations</Button>
+                    <Button onClick={() => handleLoadAffirmationGroup('Share Affirmations')}>Share Affirmations</Button>
+                    <Button onClick={() => handleLoadAffirmationGroup('Coding Affirmations')}>Coding Affirmations</Button>
                 </div>
                 <div className="pt-4 pb-1">
                     <p className="italic">List of current affirmations:</p>
@@ -128,7 +160,7 @@ const CurrentAffirmations = () => {
                     <p>Are you sure you want to delete this affirmation?</p>
                     <button onClick={closeDialog}>Cancel</button>
                     <button onClick={closeDialog}>Confirm</button>
-                </ModalDialog> */}
+                </Modal Dialog> */}
             </section>
         </>
     )
