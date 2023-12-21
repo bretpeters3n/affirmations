@@ -2,10 +2,11 @@ import { useState } from 'react'
 import {BrowserRouter, useNavigate, Route, Routes, Link } from 'react-router-dom'
 import { AiFillEdit } from "react-icons/ai";
 import useConfirm from './UseConfirm';
-import { Button } from '@mui/material';
+import { Button as ButtonMUI } from '@mui/material';
 import DefineGetSetAffirmationsArray from './DefineGetSetAffirmationsArray';
 import defaultAffirmationsArray from './DefaultAffirmations';
-import MyButton from './Button';
+import MyButton from './MyButton';
+import Button from './Button';
 
 
 const CurrentAffirmations = () => {
@@ -112,16 +113,19 @@ const CurrentAffirmations = () => {
                 <h1 className="theme-switcher text-3xl font-bold text-purple-600 pb-2">
                     Current Affirmations
                 </h1>
-                <div className='flex'>
-                    <Link to="/add">
+                <div className='d-flex flex-column align-items-center'>
+                    {/* <Link to="/add">
                         <MyButton text='Add new Affirmation' onClick={handleAddAffirmationClick}/>
+                    </Link> */}
+                    <Link to="/add">
+                        <Button text='Add new Affirmation' onClick={handleAddAffirmationClick}/>
                     </Link>
                 </div>
                 <div className="d-flex flex-column align-items-center pt-4 pb-1">
                     <p className="italic">Select affirmation group:</p>
-                    <Button onClick={() => handleLoadAffirmationGroup('Default Affirmations')}>Default Affirmations</Button>
-                    <Button onClick={() => handleLoadAffirmationGroup('Share Affirmations')}>Share Affirmations</Button>
-                    <Button onClick={() => handleLoadAffirmationGroup('Coding Affirmations')}>Coding Affirmations</Button>
+                    <ButtonMUI onClick={() => handleLoadAffirmationGroup('Default Affirmations')}>Default Affirmations</ButtonMUI>
+                    <ButtonMUI onClick={() => handleLoadAffirmationGroup('Share Affirmations')}>Share Affirmations</ButtonMUI>
+                    <ButtonMUI onClick={() => handleLoadAffirmationGroup('Coding Affirmations')}>Coding Affirmations</ButtonMUI>
                 </div>
                 <div className="pt-4 pb-1">
                     <p className="italic">List of current affirmations:</p>
@@ -150,9 +154,9 @@ const CurrentAffirmations = () => {
                     <p className="italic">End of list</p>
                 </div>
                 <div className="pb-2">
-                    <Button onClick={handleDeleteAllAffirmationClick}>delete all affirmations</Button>
+                    <ButtonMUI onClick={handleDeleteAllAffirmationClick}>delete all affirmations</ButtonMUI>
                     <Dialog />    
-                    <Button onClick={handleLoadDefaultAffirmationClick}>load default affirmations</Button>    
+                    <ButtonMUI onClick={handleLoadDefaultAffirmationClick}>load default affirmations</ButtonMUI>    
                     <Dialog2 />  
                 </div>
                 

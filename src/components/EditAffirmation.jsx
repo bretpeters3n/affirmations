@@ -12,14 +12,30 @@ const EditAffirmation = () => {
     const location = useLocation();
     console.log(location.state);
     let affirmationIDToEdit = location.state.affirmation_id;
-    console.log(affirmationIDToEdit);
+    console.log('affirmationIDToEdit: ' + affirmationIDToEdit);
 
     // define, get, and set data
     let affirmationsArray = DefineGetSetAffirmationsArray();
 
+    // object of affirmation groups
+    let affirmationGroupsObject = affirmationsArray[0].groups;
+
+    // define var for key of affirmation group we are attempting to display
+    let groupKey;
+    // assign the wanted key to the var
+    Object.entries(affirmationGroupsObject).forEach(entry => {
+        const [key, value] = entry;
+        if (value.group === "Default Affirmations") {
+            groupKey = key;
+        } 
+    });
+
+    // assign var with array of affirmations we are attempting to display
+    let currentGroupAffirmations = affirmationGroupsObject[groupKey].affirmations;
+
     // grab affirmation User wishes to edit 
-    let affirmationTextToEdit = affirmationsArray[affirmationIDToEdit].affirmation;
-    console.log(affirmationTextToEdit);
+    let affirmationTextToEdit = currentGroupAffirmations[affirmationIDToEdit].affirmation;
+    console.log('affirmationTextToEdit: ' + affirmationTextToEdit);
     
     const [DialogEdit, confirmEdit] = useConfirm(
         `Confirm update?`,
@@ -32,7 +48,7 @@ const EditAffirmation = () => {
             if (!affirmationText) {
                 alert('Affirmation text is empty. Please add you affirmation.')
             } else {
-                affirmationsArray[affirmationIDToEdit].affirmation = affirmationText;
+                currentGroupAffirmations[affirmationIDToEdit].affirmation = affirmationText;
                 // reset duration property
                 let affirmation = affirmationText;
                 let limit = 60;
@@ -41,10 +57,10 @@ const EditAffirmation = () => {
                 let long = '8000';
                 if (affLength < limit) {
                     console.log('smaller than 10. It is: ' + affLength)
-                    affirmationsArray[affirmationIDToEdit].duration = short;
+                    currentGroupAffirmations[affirmationIDToEdit].duration = short;
                 } else {
                     console.log('larger than 10. It is: ' + affLength)
-                    affirmationsArray[affirmationIDToEdit].duration = long;
+                    currentGroupAffirmations[affirmationIDToEdit].duration = long;
                 }        
                 localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));
                 navigate("/current");
@@ -65,10 +81,11 @@ const EditAffirmation = () => {
             // grab index value of affirmation
             // replace below with splice/concat solution
             const n = affirmationIDToEdit;
-            affirmationsArray = affirmationsArray.slice(0, n).concat(affirmationsArray.slice(n+1))
+            currentGroupAffirmations = currentGroupAffirmations.slice(0, n).concat(currentGroupAffirmations.slice(n+1))
 
             // test array
-            console.log(affirmationsArray);
+            console.log('currentGroupAffirmations: ');
+            console.log(currentGroupAffirmations);
 
             // save array
             localStorage.setItem('affirmationsUnique', JSON.stringify(affirmationsArray));

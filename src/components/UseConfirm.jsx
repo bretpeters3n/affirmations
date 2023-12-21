@@ -28,13 +28,13 @@ const useConfirm = (title, message) => {
         open={promise !== null}
         fullWidth
       >
-        <DialogTitle><h2>{title}</h2></DialogTitle>
+        <DialogTitle>{title}</DialogTitle>
         <DialogContent>
-          <DialogContentText><p>{message}</p></DialogContentText>
+          <DialogContentText>{message}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancel}>Abort</Button>
-          <Button onClick={handleConfirm}><button className="theme-switcher btn btn-outline-primary">Yes</button></Button>
+          <Button onClick={handleConfirm} className="theme-switcher btn btn-outline-primary">Yes</Button>
         </DialogActions>
       </Dialog>
     );
