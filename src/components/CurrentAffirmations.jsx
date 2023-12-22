@@ -49,15 +49,15 @@ const CurrentAffirmations = () => {
             return;
         }
     }
-    const handleEditAffirmationClick = event => {
-        // let editEl = event.target.parentElement.parentElement.parentElement.parentElement;
-        let editEl = event.target.closest("li");
-        let editId = editEl.getAttribute("id");
-        console.log('editId: ' + editId);
-        console.log('editEl: ' + editEl);
-        console.log(editEl);
-        navigate("/edit", { state: { affirmation_id: editId } }); // Pass optional second argument
-    }
+    // const handleEditAffirmationClick = event => {
+    //     // let editEl = event.target.parentElement.parentElement.parentElement.parentElement;
+    //     let editEl = event.target.closest("li");
+    //     let editId = editEl.getAttribute("id");
+    //     console.log('editId: ' + editId);
+    //     console.log('editEl: ' + editEl);
+    //     console.log(editEl);
+    //     navigate("/edit", { state: { affirmation_id: editId } }); // Pass optional second argument
+    // }
 
     
     // define, get, and set data
