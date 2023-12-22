@@ -7,6 +7,7 @@ import DefineGetSetAffirmationsArray from './DefineGetSetAffirmationsArray';
 import defaultAffirmationsArray from './DefaultAffirmations';
 import MyButton from './MyButton';
 import Button from './Button';
+import { Card_CurrentAffirmations as Card } from './Card_CurrentAffirmations';
 
 
 const CurrentAffirmations = () => {
@@ -131,22 +132,9 @@ const CurrentAffirmations = () => {
                     <p className="italic">List of current affirmations:</p>
                 </div>
                 <ul className='currentAffirmations'>
-                    {currentGroupAffirmations.map(
-                        (
-                            { group, affirmation, duration, order, uuid},
-                            index
-                        ) => {
+                    {currentGroupAffirmations.map(({group, affirmation, duration, order, uuid}, index) => {
                             return (
-                                <li id={index} className="splide__slide__EDIT" key={uuid}>
-                                    <div className="currentCard">
-                                        <div className="card grid">
-                                            <p className="theme-switcher card-body">{affirmation}</p>
-                                            <button onClick={handleEditAffirmationClick} className="theme-switcher edit">
-                                                <AiFillEdit size={20} className="reactIcons"/>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </li>
+                                <Card index={index} group={group} affirmation={affirmation} duration={duration} order={order} uuid={uuid}/>
                         );
                     })}
                 </ul>

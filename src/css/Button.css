@@ -80,6 +80,7 @@
   outline-offset: 3px;
   outline-style: dotted;
   outline-width: 2px; */
+  /* NOTE: make sure these focus and active styles are up to standards */
 }
 .Button.primary:focus-visible {
   box-shadow: unset;
