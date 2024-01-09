@@ -18,7 +18,7 @@ const AffirmationParams = () => {
           <select
             id="animal"
             value={animal}
-            onChange={(e) => {
+            onChange={() => {
               //   setAnimal(e.target.value);
               //   setBreed("");
             }}
@@ -34,23 +34,23 @@ const AffirmationParams = () => {
         <label htmlFor="breed">
           Breed
           <select
-            disabled={!breeds.length}
+            // disabled={!breeds.length}
             id="breed"
-            value={breed}
-            onChange={(e) => setBreed(e.target.value)}
-            onBlur={(e) => setBreed(e.target.value)}
+            // value={breed}
+            // onChange={(e) => setBreed(e.target.value)}
+            // onBlur={(e) => setBreed(e.target.value)}
           >
             <option />
-            {breeds.map((breed) => (
+            {/* {breeds.map((breed) => (
               <option key={breed} value={breed}>
                 {breed}
               </option>
-            ))}
+            ))} */}
           </select>
         </label>
         <button>Submit</button>
       </form>
-      <Results pets={pets} />
+      {/* <Results pets={pets} /> */}
     </div>
   );
 };

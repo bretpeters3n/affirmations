@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes, Link } from "react-router-dom";
-// import "@splidejs/react-splide/css";
+import "@splidejs/react-splide";
 import darkModeIcon from "./assets/dark-mode-icon_dark.svg";
 import lightModeIcon from "./assets/dark-mode-icon_light.svg";
 import DisplayAffirmations from "./components/DisplayAffirmations";
@@ -14,7 +14,7 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   const [isDarkModeActive, setIsDarkModeActive] = useState(false);
 
-  const handleHamClick = (event) => {
+  const handleHamClick = () => {
     // 👇️ toggle isActive state on click
     setIsActive((current) => !current);
   };
@@ -61,7 +61,7 @@ function App() {
           </Routes>
         </main>
         <nav className="theme-switcher btm-gradient">
-          <div id="appName" className="theme-switcher" onClick={handleHamClick}>
+          <div id="appName" className="theme-switcher">
             Affirmations
           </div>
           <button
@@ -107,7 +107,7 @@ function App() {
               <Link id="toggleFullscreen">Toggle fullscreen</Link>
             </li> */}
             <li>
-              <img
+              <button
                 className="theme-switcher"
                 onClick={() => toggleModes()}
                 src={isDarkModeActive ? lightModeIcon : darkModeIcon}
