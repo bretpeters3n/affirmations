@@ -4,6 +4,7 @@
   transition-property: color, background-color, border-color, stroke, fill, fill-rule, d;
   transition-duration: 0.25s;
   transition-timing-function: ease;
+  /* outline:rgb(50, 50, 50) .11rem solid; */
 }
 
 :root {

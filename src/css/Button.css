@@ -49,7 +49,7 @@
   /* font-size: 1rem; */
   color: var(--backgroundColor);
   /* border: 2px solid var(--primaryColor); */
-  background-color: rgba(87, 228, 0, 100);
+  background-color: var(--primaryBtnColor);
   font-weight: 500;
   border-radius: 40px;
   padding: max(0.5em, 0.5rem) max(1.5em, 1.5rem);
