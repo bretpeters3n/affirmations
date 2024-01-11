@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 // import MyButton from "./MyButton";
 import Button from "./Button";
 // import { Card_CurrentAffirmations as Card } from "./Card_CurrentAffirmations";
-// import AffirmationParams from "./AffirmationParams";
+import AffirmationParams from "./AffirmationParams";
 
 const CurrentAffirmations = () => {
   //   const navigate = useNavigate();
@@ -29,8 +29,11 @@ const CurrentAffirmations = () => {
         </h1>
         <div className="d-flex flex-column align-items-center">
           {/* <Link to="/add">
-                        <MyButton text='Add new Affirmation' onClick={handleAddAffirmationClick}/>
-                    </Link> */}
+            <MyButton
+              text="Add new Affirmation"
+              onClick={handleAddAffirmationClick}
+            />
+          </Link> */}
           <Link to="/add">
             <Button
               text="Add new Affirmation"
@@ -39,7 +42,7 @@ const CurrentAffirmations = () => {
           </Link>
         </div>
         <div className="d-flex flex-column align-items-center pt-4 pb-1">
-          {/* <AffirmationParams /> */}
+          <AffirmationParams />
         </div>
       </section>
     </>

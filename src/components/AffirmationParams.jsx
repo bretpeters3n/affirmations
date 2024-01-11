@@ -1,54 +1,51 @@
-import { useState } from "react";
+// import { useState } from "react";
 // import { Link } from "react-router-dom";
-import { Card_CurrentAffirmations as Card } from "./Card_CurrentAffirmations";
-import { Button as ButtonMUI } from "@mui/material";
+// import { Card_CurrentAffirmations as Card } from "./Card_CurrentAffirmations";
+// import { Button as ButtonMUI } from "@mui/material";
 // import Button from "./Button";
 
-import DefineGetSetAffirmationsArray from "./DefineGetSetAffirmationsArray";
+// import DefineGetSetAffirmationsArray from "./DefineGetSetAffirmationsArray";
 
 const AffirmationParams = () => {
-  //   const [affirmationGroup, setAffirmationGroup] = useState(
-  //     "Default Affirmations",
-  //   );
-  //   const [affirmations] = useGroupList(group);
+  let affirmationGroup = "Test";
   const ANIMALS = ["dog", "cat", "horse"];
   let animal = ANIMALS[0];
 
-  let affirmationsArray = DefineGetSetAffirmationsArray();
+  //   let affirmationsArray = DefineGetSetAffirmationsArray();
 
-  let affirmationGroupsObject = affirmationsArray[0].groups;
+  //   let affirmationGroupsObject = affirmationsArray[0].groups;
 
-  let groupKey;
-  Object.entries(affirmationGroupsObject).forEach((entry) => {
-    const [key, value] = entry;
-    if (value.group === "Default Affirmations") {
-      groupKey = key;
-    }
-  });
+  //   let groupKey;
+  //   Object.entries(affirmationGroupsObject).forEach((entry) => {
+  //     const [key, value] = entry;
+  //     if (value.group === "Default Affirmations") {
+  //       groupKey = key;
+  //     }
+  //   });
 
-  const [affirmationGroup, setAffirmationGroup] = useState(
-    "Default Affirmations",
-  );
+  //   const [affirmationGroup, setAffirmationGroup] = useState(
+  //     "Default Affirmations",
+  //   );
 
-  function handleLoadAffirmationGroup(changeGroup) {
-    setAffirmationGroup(() => {
-      // cycle through affirmation object (from localstorage) and set groupKey to reflect new group that was just selected
-      Object.entries(affirmationGroupsObject).forEach((entry) => {
-        const [key, value] = entry;
-        if (value.group === changeGroup) {
-          groupKey = key;
-          console.log(key);
-        }
-      });
-      setCurrentGroupAffirmations(
-        affirmationGroupsObject[groupKey].affirmations,
-      );
-    });
-  }
+  //   function handleLoadAffirmationGroup(changeGroup) {
+  //     setAffirmationGroup(() => {
+  //       // cycle through affirmation object (from localstorage) and set groupKey to reflect new group that was just selected
+  //       Object.entries(affirmationGroupsObject).forEach((entry) => {
+  //         const [key, value] = entry;
+  //         if (value.group === changeGroup) {
+  //           groupKey = key;
+  //           console.log(key);
+  //         }
+  //       });
+  //       setCurrentGroupAffirmations(
+  //         affirmationGroupsObject[groupKey].affirmations,
+  //       );
+  //     });
+  //   }
 
-  const [currentGroupAffirmations, setCurrentGroupAffirmations] = useState(
-    affirmationGroupsObject[groupKey].affirmations,
-  );
+  //   const [currentGroupAffirmations, setCurrentGroupAffirmations] = useState(
+  //     affirmationGroupsObject[groupKey].affirmations,
+  //   );
 
   //   const [Dialog, confirmDelete] = useConfirm(
   //     `Confirm deletion?`,
@@ -86,14 +83,7 @@ const AffirmationParams = () => {
         >
           <label htmlFor="animal">
             <span className="italic">Select affirmation group:</span>
-            <select
-              id="animal"
-              value={animal}
-              onChange={(e) => {
-                setCurrentGroupAffirmations(e.target.value);
-                //   setBreed("");
-              }}
-            >
+            <select id="animal" value={animal}>
               <option />
               {ANIMALS.map((animal) => (
                 <option key={animal} value={animal}>
@@ -103,16 +93,16 @@ const AffirmationParams = () => {
             </select>
           </label>
           <button>Submit</button>
-          {currentGroupAffirmations.map((affirmation) => (
+          {/* {currentGroupAffirmations.map((affirmation) => (
             <option key={affirmation} value={affirmation}>
               {affirmation}
             </option>
-          ))}
+          ))} */}
         </form>
       </div>
       <div className="d-flex flex-column align-items-center pt-4 pb-1">
         <p className="italic">Select affirmation group:</p>
-        <ButtonMUI
+        {/* <ButtonMUI
           onClick={() => handleLoadAffirmationGroup("Default Affirmations")}
         >
           Default Affirmations
@@ -126,17 +116,17 @@ const AffirmationParams = () => {
           onClick={() => handleLoadAffirmationGroup("Coding Affirmations")}
         >
           Coding Affirmations
-        </ButtonMUI>
+        </ButtonMUI> */}
       </div>
       <div className="pt-4 pb-1">
         <p className="italic">List of {affirmationGroup} affirmations:</p>
       </div>
       <ul className="currentAffirmations">
-        {currentGroupAffirmations.map(({ affirmation, duration }, index) => {
+        {/* {currentGroupAffirmations.map(({ affirmation, duration }, index) => {
           return (
             <Card key={index} affirmation={affirmation} duration={duration} />
           );
-        })}
+        })} */}
       </ul>
       <div className="pb-1 pt-1">
         <p className="italic">End of list</p>
