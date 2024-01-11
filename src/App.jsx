@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes, Link } from "react-router-dom";
-import "@splidejs/react-splide";
+import "./css/splide.min.css";
 import darkModeIcon from "./assets/dark-mode-icon_dark.svg";
 import lightModeIcon from "./assets/dark-mode-icon_light.svg";
 import DisplayAffirmations from "./components/DisplayAffirmations";
