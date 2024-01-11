@@ -45,14 +45,15 @@ const DisplayAffirmations = () => {
   return (
     <>
       <section className="home-slideshow w-80 position-absolute top-50 start-50 translate-middle">
-        <Splide aria-label="My Favorite Images">
+        {/* <Splide aria-label="My Favorite Images">
           <SplideSlide>
             <p>Sentence #1</p>
           </SplideSlide>
           <SplideSlide>
             <p>Sentence number 2</p>
           </SplideSlide>
-        </Splide>
+        </Splide> */}
+
         {/* <Splide
           options={{
             pagination: false,
@@ -81,6 +82,27 @@ const DisplayAffirmations = () => {
             },
           )}
         </Splide> */}
+
+        <Splide
+          options={{
+            pagination: false,
+            arrows: false,
+            type: "fade",
+            rewind: true,
+            autoplay: true,
+            speed: 500,
+            width: "100vw",
+            interval: 4000,
+          }}
+          aria-label="My Affirmation Quotes"
+        >
+          <SplideSlide>
+            <p>Sentence #1</p>
+          </SplideSlide>
+          <SplideSlide>
+            <p>Sentence number 2</p>
+          </SplideSlide>
+        </Splide>
       </section>
     </>
   );
