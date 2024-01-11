@@ -76,7 +76,8 @@ h3,
 h4,
 h5,
 h6,
-p {
+p,
+span {
   font-family: var(--main-font);
   color: var(--primaryColor);
 }
@@ -427,4 +428,8 @@ button#hamburger {
   display: block;
   width: 100%;
   /* flex-direction: column; */
+}
+
+.codeVomit {
+  font-size: 10px;
 }
